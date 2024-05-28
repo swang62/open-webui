@@ -10,7 +10,7 @@ services:
       - host.docker.internal:host-gateway
     restart: unless-stopped
     ports:
-      - 6000:8080
+      - 8080:8080
     volumes:
       - open-webui:/app/backend/data
 
