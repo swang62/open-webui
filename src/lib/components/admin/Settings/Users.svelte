@@ -58,11 +58,11 @@
 				<button
 					class="p-1 px-3 text-xs flex rounded transition"
 					on:click={() => {
-						permissions.chat.deletion = !permissions.chat.deletion;
+						permissions.chat.deletion = !(permissions?.chat?.deletion ?? true);
 					}}
 					type="button"
 				>
-					{#if permissions.chat.deletion}
+					{#if permissions?.chat?.deletion ?? true}
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 16 16"
@@ -112,7 +112,7 @@
 
 					<div class="flex-1 mr-2">
 						<select
-							class="w-full rounded-lg py-2 px-4 text-sm dark:text-gray-300 dark:bg-gray-850 outline-none"
+							class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-none"
 							bind:value={defaultModelId}
 							placeholder="Select a model"
 						>
@@ -140,7 +140,7 @@
 									<div class="flex w-full">
 										<div class="flex-1 mr-2">
 											<select
-												class="w-full rounded-lg py-2 px-4 text-sm dark:text-gray-300 dark:bg-gray-850 outline-none"
+												class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-none"
 												bind:value={modelId}
 												placeholder="Select a model"
 											>

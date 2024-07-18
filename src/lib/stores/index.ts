@@ -22,25 +22,15 @@ export const theme = writable('system');
 export const chatId = writable('');
 
 export const chats = writable([]);
+export const pinnedChats = writable([]);
 export const tags = writable([]);
-export const models: Writable<Model[]> = writable([]);
 
-export const modelfiles = writable([]);
+export const models: Writable<Model[]> = writable([]);
 export const prompts: Writable<Prompt[]> = writable([]);
-export const documents = writable([
-	{
-		collection_name: 'collection_name',
-		filename: 'filename',
-		name: 'name',
-		title: 'title'
-	},
-	{
-		collection_name: 'collection_name1',
-		filename: 'filename1',
-		name: 'name1',
-		title: 'title1'
-	}
-]);
+export const documents: Writable<Document[]> = writable([]);
+
+export const tools = writable([]);
+export const functions = writable([]);
 
 export const banners: Writable<Banner[]> = writable([]);
 
@@ -105,6 +95,8 @@ type Settings = {
 	top_k?: string;
 	top_p?: string;
 	num_ctx?: string;
+	num_batch?: string;
+	num_keep?: string;
 	options?: ModelOptions;
 };
 
@@ -135,12 +127,19 @@ type Prompt = {
 	timestamp: number;
 };
 
+type Document = {
+	collection_name: string;
+	filename: string;
+	name: string;
+	title: string;
+};
+
 type Config = {
 	status: boolean;
 	name: string;
 	version: string;
 	default_locale: string;
-	default_models: string[];
+	default_models: string;
 	default_prompt_suggestions: PromptSuggestion[];
 	features: {
 		auth: boolean;
@@ -150,6 +149,11 @@ type Config = {
 		enable_image_generation: boolean;
 		enable_admin_export: boolean;
 		enable_community_sharing: boolean;
+	};
+	oauth: {
+		providers: {
+			[key: string]: string;
+		};
 	};
 };
 
